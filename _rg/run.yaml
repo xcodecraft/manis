@@ -1,0 +1,110 @@
+_env:
+    - !R.env
+        _name    : "define"
+        _res :
+            - !R.vars
+                PRJ_NAME    : "manis"
+            - !R.include
+                _path :
+                    - "./_rg/run_base.yaml"
+    
+
+    - !R.env
+        _name    : "base"
+        _res :
+            - !R.vars
+                XCC_SDK      : "/data/x/libs/xcc_vendor/src/xccSDK"
+                BASE_INCLUDE : "${PRJ_ROOT}/src/bizlogic:${XCC_SDK}"
+                BINLOG_PATH : "/data/res/beanstalkd"
+    - !R.env
+        _name    : "dev"
+        _mix     : "define,_local_deploy,_dev,_base,base"
+
+    - !R.env
+        _name    : "demo"
+        _mix     : "define,_serving_deploy,_demo,_base,base"
+
+    - !R.env
+        _name    : "test"
+        _mix     : "define,_serving_deploy,_test,_base,base"
+
+    - !R.env
+        _name    : "beta"
+        _mix     : "define,_serving_deploy,_beta,_base,base"
+
+    - !R.env
+        _name    : "online"
+        _mix     : "define,_serving_deploy,_online,_base,base"
+
+_sys:
+      # -  !R.system
+      #     _name  : "init"
+      #     _limit :
+      #         envs   : "demo,online"
+      #         passwd : "mind"
+      #     _res  :
+      #         - !R.vars
+      #             PHP_INI : "${PRJ_ROOT}/conf/used/init_php.ini"
+
+
+      -  !R.system
+          _name : "api"
+          _res  :
+              - !R.vars
+                  DOMAIN      : "api.${BASE_DOMAIN}"
+                  PORT        : "80"
+              - !R.using
+                  modul : "pylon_api"
+                  args  : !R.vars
+                      API_ENTRY    : "${PRJ_ROOT}/src/sys_${SYS_NAME}"
+                      INCLUDE_PATH : "${prj_root}/src/sys_${sys_name}:${BASE_INCLUDE}"
+              - !R.path
+                  dst  : "${BINLOG_PATH}"
+                  keep : True
+                  sudo : True
+              - !R.beanstalkd
+                  port :  11311
+                  binlog: "${BINLOG_PATH}"
+
+
+      -  !R.system
+          _name : "web"
+          _res  :
+              - !R.vars
+                  DOMAIN      : "www.${BASE_DOMAIN}"
+                  PORT        : "80"
+              - !R.using
+                  modul : "pylon_web"
+                  args  : !R.vars
+                      API_ENTRY    : "${PRJ_ROOT}/src/sys_${SYS_NAME}"
+                      INCLUDE_PATH : "${prj_root}/src/sys_${sys_name}:${BASE_INCLUDE}"
+
+      -  !R.system
+          _name : "test"
+          _res:
+              - !R.vars
+                  API_DOMAIN  : "api.${BASE_DOMAIN}"
+                  PHP_INI : "${PRJ_ROOT}/conf/used/test_php.ini"
+                  PORT        : "80"
+              - !R.using
+                  modul : "pylon_unit"
+                  args  : !R.vars
+                      PHPUNIT_PATH : "${PRJ_ROOT}/vendor/phpunit/"
+                      INCLUDE_PATH : "${prj_root}/src/sys_api:${BASE_INCLUDE}:${PRJ_ROOT}/test/:${PHPUNIT_PATH}"
+
+      -  !R.system
+          _name : "console"
+          _res:
+              - !R.vars
+                  PHP_INI : "${PRJ_ROOT}/conf/used/console_php.ini"
+              - !R.using
+                  modul : "pylon_php"
+                  args  : !R.vars
+                      INCLUDE_PATH : "${PRJ_ROOT}/src/sys_console:${BASE_INCLUDE}"
+              # - !R.daemon_php
+              #     script:  "${PRJ_ROOT}/src/sys_console/apply_worker.php"
+              #     tag   :  "apply"
+              #     worker:  5
+              # - !R.file_tpl
+              #     tpl   : "${PRJ_ROOT}/conf/options/console.cron"
+              #     dst   : "${PRJ_ROOT}/conf/used/console.cron"

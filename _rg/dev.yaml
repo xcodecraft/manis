@@ -1,0 +1,9 @@
+_dev:
+    - !C.project
+        name : "manis"
+        root : "${HOME}/devspace/manis"
+    - !C.version
+        file : "src/version.txt"
+    - !C.git
+        remote : "git@github.com:xcodecraft/manis.git"
+

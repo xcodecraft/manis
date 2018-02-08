@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="cases" tests="1" assertions="0" errors="1" failures="0" skipped="0" time="0.007371">
+    <testsuite name="ApiTest" file="/home/zuowenjian/devspace/manis/test/cases/api_test.php" tests="1" assertions="0" errors="1" failures="0" skipped="0" time="0.007371">
+      <testcase name="testLog" class="ApiTest" classname="ApiTest" file="/home/zuowenjian/devspace/manis/test/cases/api_test.php" line="7" assertions="0" time="0.007371">
+        <error type="PHPUnit\Framework\RiskyTestError">Risky Test
+</error>
+      </testcase>
+    </testsuite>
+  </testsuite>
+</testsuites>

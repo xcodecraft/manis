@@ -1,0 +1,2 @@
+<?php
+XSetting::setupModel();
