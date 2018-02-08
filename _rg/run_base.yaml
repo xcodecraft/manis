@@ -50,7 +50,7 @@ _env:
         _mix  : "_debug,_speed_min"
         _res  :
             - !R.vars
-                BASE_DOMAIN  : "${USER}.dev.manis.xcodecrfat.cn"
+                BASE_DOMAIN  : "${USER}.manis.dev.xcodecrfat.com"
                 DB_NAME         : "${PRJ_NAME}_${USER}"
                 RUN_ENV         : "dev"
 
@@ -59,7 +59,7 @@ _env:
         _mix  : "_debug,_speed_min"
         _res  :
             - !R.vars
-                BASE_DOMAIN  : "demo.manis.xcodecrfat.cn"
+                BASE_DOMAIN  : "manis.demo.xcodecrfat.com"
                 DB_NAME         : "${PRJ_NAME}_demo"
                 RUN_ENV         : "demo"
     - !R.env
@@ -67,7 +67,7 @@ _env:
         _mix  : "_debug,_speed_min"
         _res  :
             - !R.vars
-                BASE_DOMAIN : "ci.manis.xcodecrfat.cn"
+                BASE_DOMAIN : "manis.ci.xcodecrfat.com"
                 DB_NAME        : "${PRJ_NAME}_lab"
                 RUN_ENV        : "lab"
 
@@ -77,7 +77,7 @@ _env:
         _mix  : "_debug,_speed_min"
         _res  :
             - !R.vars
-                BASE_DOMAIN : "lab.manis.xcodecrfat.cn"
+                BASE_DOMAIN : "manis.lab.xcodecrfat.com"
                 DB_NAME        : "${PRJ_NAME}_lab"
                 RUN_ENV        : "lab"
 
@@ -86,7 +86,7 @@ _env:
         _mix  : "_debug,_speed_min"
         _res  :
             - !R.vars
-                BASE_DOMAIN : "test.manis.xcodecrfat.cn"
+                BASE_DOMAIN : "test.manis.test.xcodecrfat.com"
                 DB_NAME        : "${PRJ_NAME}_test"
                 RUN_ENV        : "test"
 
@@ -95,7 +95,7 @@ _env:
         _mix  : "_debug,_speed_min"
         _res  :
             - !R.vars
-                BASE_DOMAIN  : "manis.xcodecrfat.cn"
+                BASE_DOMAIN  : "manis.beta.xcodecrfat.com"
                 RUN_ENV        : "beta"
 
 
@@ -104,7 +104,7 @@ _env:
         _mix  : "_release,_speed_max"
         _res  :
             - !R.vars
-                BASE_DOMAIN  : "manis.xcodecrfat.cn"
+                BASE_DOMAIN  : "manis.xcodecrfat.com"
                 RUN_ENV        : "online"
 
     - !R.env

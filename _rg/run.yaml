@@ -58,13 +58,13 @@ _sys:
                   args  : !R.vars
                       API_ENTRY    : "${PRJ_ROOT}/src/sys_${SYS_NAME}"
                       INCLUDE_PATH : "${prj_root}/src/sys_${sys_name}:${BASE_INCLUDE}"
-              - !R.path
-                  dst  : "${BINLOG_PATH}"
-                  keep : True
-                  sudo : True
-              - !R.beanstalkd
-                  port :  11311
-                  binlog: "${BINLOG_PATH}"
+              # - !R.path
+              #     dst  : "${BINLOG_PATH}"
+              #     keep : True
+              #     sudo : True
+              # - !R.beanstalkd
+              #     port :  11311
+              #     binlog: "${BINLOG_PATH}"
 
 
       -  !R.system
