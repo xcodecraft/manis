@@ -86,7 +86,7 @@ _env:
         _mix  : "_debug,_speed_min"
         _res  :
             - !R.vars
-                BASE_DOMAIN : "test.manis.test.xcodecrfat.com"
+                BASE_DOMAIN : "manis.test.xcodecrfat.com"
                 DB_NAME        : "${PRJ_NAME}_test"
                 RUN_ENV        : "test"
 
