@@ -7,7 +7,7 @@ _env:
             - !R.include
                 _path :
                     - "./_rg/run_base.yaml"
-    
+
 
     - !R.env
         _name    : "base"
@@ -37,16 +37,6 @@ _env:
         _mix     : "define,_serving_deploy,_online,_base,base"
 
 _sys:
-      # -  !R.system
-      #     _name  : "init"
-      #     _limit :
-      #         envs   : "demo,online"
-      #         passwd : "mind"
-      #     _res  :
-      #         - !R.vars
-      #             PHP_INI : "${PRJ_ROOT}/conf/used/init_php.ini"
-
-
       -  !R.system
           _name : "api"
           _res  :
